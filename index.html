@@ -1,0 +1,556 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dynamic Duo Biz – Your Trusted Lifestyle & Gifting Brand</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --purple: #7B5EA7;
+    --purple-light: #E8D9F7;
+    --purple-dark: #4A3070;
+    --lavender: #C9A8E8;
+    --white: #FFFFFF;
+    --soft-bg: #F5EEFF;
+    --text-dark: #2A1A45;
+    --wa-green: #25D366;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--soft-bg);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 40px;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(123,94,167,0.15);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 900;
+    color: var(--purple-dark);
+    letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--purple); }
+  .nav-cta {
+    background: var(--wa-green); color: #fff;
+    padding: 10px 22px; border-radius: 50px;
+    text-decoration: none; font-weight: 600; font-size: 0.85rem;
+    display: flex; align-items: center; gap: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 18px rgba(37,211,102,0.35);
+  }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.45); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse at 70% 30%, rgba(201,168,232,0.55) 0%, transparent 60%),
+      radial-gradient(ellipse at 10% 80%, rgba(123,94,167,0.3) 0%, transparent 50%),
+      linear-gradient(145deg, #2A1A45 0%, #5B3A8A 40%, #C9A8E8 100%);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    position: relative; overflow: hidden;
+    padding: 100px 20px 60px;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(255,255,255,0.06) 1px, transparent 1px),
+      radial-gradient(circle at 80% 80%, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px, 40px 40px;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff; padding: 6px 18px; border-radius: 50px;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 24px;
+    backdrop-filter: blur(8px);
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 900; color: #fff;
+    line-height: 1.05;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+  }
+  .hero-title em { color: var(--lavender); font-style: normal; }
+  .hero-sub {
+    color: rgba(255,255,255,0.78);
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    max-width: 520px; margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+  .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--white); color: var(--purple-dark);
+    padding: 14px 34px; border-radius: 50px;
+    font-weight: 700; font-size: 0.95rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.25); }
+  .btn-wa {
+    background: var(--wa-green); color: #fff;
+    padding: 14px 34px; border-radius: 50px;
+    font-weight: 700; font-size: 0.95rem;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+  }
+  .btn-wa:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(37,211,102,0.5); }
+
+  /* FLOATING SHAPES */
+  .hero-shape {
+    position: absolute; border-radius: 50%;
+    filter: blur(40px); opacity: 0.25;
+    animation: float 8s ease-in-out infinite;
+  }
+  .hs1 { width: 300px; height: 300px; background: #C9A8E8; top: -80px; right: -60px; animation-delay: 0s; }
+  .hs2 { width: 200px; height: 200px; background: #7B5EA7; bottom: 60px; left: -40px; animation-delay: 3s; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+
+  /* FEATURES STRIP */
+  .features-strip {
+    display: flex; justify-content: center; gap: 0;
+    background: var(--purple-dark);
+    padding: 0;
+    overflow: hidden;
+  }
+  .feat-item {
+    flex: 1; text-align: center; padding: 24px 20px;
+    color: #fff; border-right: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.85rem; font-weight: 500;
+  }
+  .feat-item:last-child { border-right: none; }
+  .feat-item strong { display: block; font-size: 1.5rem; margin-bottom: 4px; }
+
+  /* SECTION */
+  section { padding: 90px 20px; }
+  .section-label {
+    text-align: center; font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--purple); margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900; text-align: center; color: var(--text-dark);
+    margin-bottom: 50px; line-height: 1.15;
+  }
+  .section-title span { color: var(--purple); }
+
+  /* PRODUCTS GRID */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .product-card {
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(123,94,167,0.12);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    position: relative;
+  }
+  .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(123,94,167,0.22); }
+  .card-img {
+    width: 100%; height: 220px; object-fit: cover;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5rem;
+  }
+  .card-img.gift-bg { background: linear-gradient(135deg, #FFF0F5 0%, #FFD6E8 100%); }
+  .card-img.bag-bg  { background: linear-gradient(135deg, #FFF8E1 0%, #FFE0B2 100%); }
+  .card-img.avon-bg { background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%); }
+  .card-tag {
+    position: absolute; top: 18px; left: 18px;
+    background: var(--purple); color: #fff;
+    padding: 5px 14px; border-radius: 50px;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .card-body { padding: 24px; }
+  .card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700; margin-bottom: 8px;
+  }
+  .card-desc { color: #777; font-size: 0.88rem; line-height: 1.55; margin-bottom: 18px; }
+  .card-price {
+    font-size: 1.5rem; font-weight: 700; color: var(--purple-dark);
+    margin-bottom: 18px;
+  }
+  .card-price small { font-size: 0.75rem; color: #999; font-weight: 400; }
+  .btn-view {
+    width: 100%; padding: 12px; border-radius: 50px;
+    background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
+    color: #fff; font-weight: 600; font-size: 0.9rem;
+    border: none; cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-view:hover { opacity: 0.9; transform: scale(1.02); }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    background: rgba(20,10,40,0.75); backdrop-filter: blur(8px);
+    align-items: center; justify-content: center; padding: 20px;
+  }
+  .modal-overlay.active { display: flex; animation: fadeIn 0.25s ease; }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+  .modal {
+    background: #fff; border-radius: 28px;
+    max-width: 560px; width: 100%;
+    overflow: hidden;
+    animation: slideUp 0.3s ease;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+  }
+  @keyframes slideUp { from{transform:translateY(30px);opacity:0} to{transform:translateY(0);opacity:1} }
+  .modal-img {
+    width: 100%; height: 260px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 7rem; position: relative;
+  }
+  .modal-close {
+    position: absolute; top: 16px; right: 16px;
+    background: rgba(255,255,255,0.9); border: none;
+    width: 38px; height: 38px; border-radius: 50%;
+    font-size: 1.1rem; cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    transition: transform 0.2s;
+  }
+  .modal-close:hover { transform: rotate(90deg); }
+  .modal-body { padding: 30px; }
+  .modal-tag {
+    display: inline-block;
+    background: var(--purple-light); color: var(--purple-dark);
+    padding: 4px 14px; border-radius: 50px;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .modal-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 900; margin-bottom: 12px;
+  }
+  .modal-desc { color: #666; font-size: 0.92rem; line-height: 1.65; margin-bottom: 20px; }
+  .modal-price { font-size: 2rem; font-weight: 800; color: var(--purple-dark); margin-bottom: 6px; }
+  .modal-note { font-size: 0.8rem; color: #aaa; margin-bottom: 24px; }
+  .modal-features { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .feature-pill {
+    background: var(--soft-bg); color: var(--purple-dark);
+    padding: 6px 14px; border-radius: 50px;
+    font-size: 0.78rem; font-weight: 500;
+  }
+  .btn-modal-wa {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; padding: 15px;
+    background: var(--wa-green); color: #fff;
+    border-radius: 50px; text-decoration: none;
+    font-weight: 700; font-size: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+  }
+  .btn-modal-wa:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(37,211,102,0.5); }
+
+  /* ABOUT */
+  .about-section {
+    background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 100%);
+    color: #fff; text-align: center; padding: 80px 20px;
+  }
+  .about-section .section-title { color: #fff; }
+  .about-section .section-title span { color: var(--lavender); }
+  .about-section p { color: rgba(255,255,255,0.75); max-width: 600px; margin: 0 auto 30px; font-size: 1rem; line-height: 1.7; }
+  .contact-pills { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+  .contact-pill {
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; padding: 12px 24px; border-radius: 50px;
+    font-size: 0.9rem; font-weight: 500; text-decoration: none;
+    backdrop-filter: blur(8px);
+    transition: background 0.2s;
+  }
+  .contact-pill:hover { background: rgba(255,255,255,0.2); }
+
+  /* FOOTER */
+  footer {
+    background: var(--text-dark); color: rgba(255,255,255,0.5);
+    text-align: center; padding: 30px 20px;
+    font-size: 0.82rem;
+  }
+  footer strong { color: rgba(255,255,255,0.9); }
+
+  /* WA FAB */
+  .wa-fab {
+    position: fixed; bottom: 30px; right: 30px; z-index: 888;
+    background: var(--wa-green); color: #fff;
+    width: 60px; height: 60px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; text-decoration: none;
+    box-shadow: 0 8px 30px rgba(37,211,102,0.5);
+    animation: pulse 2.5s infinite;
+  }
+  @keyframes pulse { 0%,100%{box-shadow:0 8px 30px rgba(37,211,102,0.5)} 50%{box-shadow:0 8px 50px rgba(37,211,102,0.8)} }
+
+  @media(max-width:600px) {
+    nav { padding: 14px 20px; }
+    .features-strip { flex-direction: column; }
+    .feat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Dynamic <span>Duo</span> Biz</div>
+  <a href="https://chat.whatsapp.com/Fkgt9wShzuhCR2d5wwTO3P" target="_blank" class="nav-cta">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.25.624 4.35 1.71 6.135L.057 23.882l5.888-1.63A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882c-2.023 0-3.9-.549-5.507-1.502l-.394-.234-4.083 1.133 1.152-3.981-.255-.408A9.84 9.84 0 012.118 12C2.118 6.533 6.533 2.118 12 2.118S21.882 6.533 21.882 12 17.467 21.882 12 21.882z"/></svg>
+    Join Our WhatsApp
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-shape hs1"></div>
+  <div class="hero-shape hs2"></div>
+  <div style="position:relative;z-index:2;">
+    <div class="hero-badge">✦ Quality · Reliability · Customer Care</div>
+    <h1 class="hero-title">Your Trusted<br><em>Lifestyle & Gifting</em><br>Brand</h1>
+    <p class="hero-sub">Premium gift hampers, trendy bags, original Avon products, and so much more — sourced just for you.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-primary">Explore Products</a>
+      <a href="https://chat.whatsapp.com/Fkgt9wShzuhCR2d5wwTO3P" target="_blank" class="btn-wa">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.25.624 4.35 1.71 6.135L.057 23.882l5.888-1.63A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882c-2.023 0-3.9-.549-5.507-1.502l-.394-.234-4.083 1.133 1.152-3.981-.255-.408A9.84 9.84 0 012.118 12C2.118 6.533 6.533 2.118 12 2.118S21.882 6.533 21.882 12 17.467 21.882 12 21.882z"/></svg>
+        Order on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="features-strip">
+  <div class="feat-item"><strong>500+</strong> Happy Customers</div>
+  <div class="feat-item"><strong>100%</strong> Original Products</div>
+  <div class="feat-item"><strong>Fast</strong> Delivery</div>
+  <div class="feat-item"><strong>24/7</strong> WhatsApp Support</div>
+</div>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <p class="section-label">✦ Our Collections</p>
+  <h2 class="section-title">Curated With <span>Love & Style</span></h2>
+  <div class="products-grid">
+
+    <!-- Card 1 -->
+    <div class="product-card" onclick="openModal('modal1')">
+      <div class="card-img gift-bg">🎁</div>
+      <span class="card-tag">Best Seller</span>
+      <div class="card-body">
+        <div class="card-name">Premium Gift Hampers</div>
+        <p class="card-desc">Beautifully curated hampers perfect for birthdays, weddings, anniversaries & corporate gifting.</p>
+        <div class="card-price">From K5,000 <small>/ hamper</small></div>
+        <button class="btn-view">View Product ↗</button>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="product-card" onclick="openModal('modal2')">
+      <div class="card-img bag-bg">👜</div>
+      <span class="card-tag">Trending</span>
+      <div class="card-body">
+        <div class="card-name">Trendy & Durable Bags</div>
+        <p class="card-desc">Handbags, travel bags, casual & elegant styles — fashion-forward designs for every occasion.</p>
+        <div class="card-price">From K8,000 <small>/ piece</small></div>
+        <button class="btn-view">View Product ↗</button>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="product-card" onclick="openModal('modal3')">
+      <div class="card-img avon-bg">💄</div>
+      <span class="card-tag">Original</span>
+      <div class="card-body">
+        <div class="card-name">Avon Beauty Products</div>
+        <p class="card-desc">Genuine Avon perfumes, lotions, roli-ons, skincare & cosmetics — beauty delivered to your door.</p>
+        <div class="card-price">From K2,500 <small>/ item</small></div>
+        <button class="btn-view">View Product ↗</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MODALS -->
+
+<!-- Modal 1 -->
+<div class="modal-overlay" id="modal1" onclick="closeOnOverlay(event, 'modal1')">
+  <div class="modal">
+    <div class="modal-img gift-bg" style="position:relative;">
+      🎁
+      <button class="modal-close" onclick="closeModal('modal1')">✕</button>
+    </div>
+    <div class="modal-body">
+      <span class="modal-tag">🎁 Gift Hampers</span>
+      <div class="modal-name">Premium Gift Hampers</div>
+      <p class="modal-desc">Our handcrafted gift hampers are filled with premium goodies tailored to the recipient. Perfect for birthdays, weddings, anniversaries, and corporate gifting events. We customize every hamper to make it truly special.</p>
+      <div class="modal-price">From K5,000</div>
+      <div class="modal-note">Price varies based on contents & size. WhatsApp us for a custom quote!</div>
+      <div class="modal-features">
+        <span class="feature-pill">🎂 Birthdays</span>
+        <span class="feature-pill">💍 Weddings</span>
+        <span class="feature-pill">🎉 Anniversaries</span>
+        <span class="feature-pill">🏢 Corporate</span>
+        <span class="feature-pill">✏️ Custom Orders</span>
+      </div>
+      <a href="https://chat.whatsapp.com/Fkgt9wShzuhCR2d5wwTO3P" target="_blank" class="btn-modal-wa">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.25.624 4.35 1.71 6.135L.057 23.882l5.888-1.63A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882c-2.023 0-3.9-.549-5.507-1.502l-.394-.234-4.083 1.133 1.152-3.981-.255-.408A9.84 9.84 0 012.118 12C2.118 6.533 6.533 2.118 12 2.118S21.882 6.533 21.882 12 17.467 21.882 12 21.882z"/></svg>
+        Order via WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2 -->
+<div class="modal-overlay" id="modal2" onclick="closeOnOverlay(event, 'modal2')">
+  <div class="modal">
+    <div class="modal-img bag-bg" style="position:relative;">
+      👜
+      <button class="modal-close" onclick="closeModal('modal2')">✕</button>
+    </div>
+    <div class="modal-body">
+      <span class="modal-tag">👜 Bags</span>
+      <div class="modal-name">Trendy & Durable Bags</div>
+      <p class="modal-desc">Our curated bag collection features the latest trends in handbags, travel bags, and everyday carry styles. Built to last, designed to impress — from casual chic to elegant formal styles that turn heads everywhere.</p>
+      <div class="modal-price">From K8,000</div>
+      <div class="modal-note">Prices vary by style & brand. Chat with us to see full catalogue!</div>
+      <div class="modal-features">
+        <span class="feature-pill">👛 Handbags</span>
+        <span class="feature-pill">🧳 Travel Bags</span>
+        <span class="feature-pill">💼 Casual Styles</span>
+        <span class="feature-pill">✨ Elegant Styles</span>
+      </div>
+      <a href="https://chat.whatsapp.com/Fkgt9wShzuhCR2d5wwTO3P" target="_blank" class="btn-modal-wa">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.25.624 4.35 1.71 6.135L.057 23.882l5.888-1.63A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882c-2.023 0-3.9-.549-5.507-1.502l-.394-.234-4.083 1.133 1.152-3.981-.255-.408A9.84 9.84 0 012.118 12C2.118 6.533 6.533 2.118 12 2.118S21.882 6.533 21.882 12 17.467 21.882 12 21.882z"/></svg>
+        Order via WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 3 -->
+<div class="modal-overlay" id="modal3" onclick="closeOnOverlay(event, 'modal3')">
+  <div class="modal">
+    <div class="modal-img avon-bg" style="position:relative;">
+      💄
+      <button class="modal-close" onclick="closeModal('modal3')">✕</button>
+    </div>
+    <div class="modal-body">
+      <span class="modal-tag">✨ Beauty</span>
+      <div class="modal-name">Original Avon Products</div>
+      <p class="modal-desc">We stock 100% genuine Avon products — from luxurious perfumes and body lotions to roll-ons, skincare essentials, and a full cosmetics range. Look and feel your absolute best with trusted Avon quality.</p>
+      <div class="modal-price">From K2,500</div>
+      <div class="modal-note">Prices vary by product. Ask us for our latest Avon brochure on WhatsApp!</div>
+      <div class="modal-features">
+        <span class="feature-pill">🌸 Perfumes</span>
+        <span class="feature-pill">🧴 Lotions</span>
+        <span class="feature-pill">💅 Cosmetics</span>
+        <span class="feature-pill">🧖 Skincare</span>
+        <span class="feature-pill">🏃 Roll-ons</span>
+      </div>
+      <a href="https://chat.whatsapp.com/Fkgt9wShzuhCR2d5wwTO3P" target="_blank" class="btn-modal-wa">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.25.624 4.35 1.71 6.135L.057 23.882l5.888-1.63A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882c-2.023 0-3.9-.549-5.507-1.502l-.394-.234-4.083 1.133 1.152-3.981-.255-.408A9.84 9.84 0 012.118 12C2.118 6.533 6.533 2.118 12 2.118S21.882 6.533 21.882 12 17.467 21.882 12 21.882z"/></svg>
+        Order via WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT / CONTACT -->
+<div class="about-section">
+  <p class="section-label" style="color:var(--lavender);">✦ Get In Touch</p>
+  <h2 class="section-title">We Source <span>Anything You Need</span></h2>
+  <p>If it's trending, we get it for you! From exclusive finds to everyday essentials — Dynamic Duo Biz has you covered with quality, reliability, and a smile.</p>
+  <div class="contact-pills">
+    <a href="tel:0997666152" class="contact-pill">📞 0997 666 152</a>
+    <a href="tel:+265993252660" class="contact-pill">📞 +265 993 25 26 60</a>
+    <a href="https://chat.whatsapp.com/Fkgt9wShzuhCR2d5wwTO3P" target="_blank" class="contact-pill" style="background:rgba(37,211,102,0.25);border-color:rgba(37,211,102,0.4);">💬 WhatsApp Us</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="text-center py-10 text-gray-400">
+
+  <p class="text-sm">
+    <strong class="text-white">Dynamic Duo Biz</strong> — Quality · Reliability · Customer Care
+  </p>
+
+  <p class="mt-2 text-xs">
+    © <span id="year"></span> Dynamic Duo Biz. All rights reserved.
+  </p>
+
+  <p class="mt-3 text-sm">
+    Developed by 
+    <span class="text-yellow-400 font-semibold tracking-wide">
+      Wtec1 Technologies
+    </span>
+  </p>
+
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+
+<!-- WhatsApp FAB -->
+<a href="https://chat.whatsapp.com/Fkgt9wShzuhCR2d5wwTO3P" target="_blank" class="wa-fab" title="Chat on WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.25.624 4.35 1.71 6.135L.057 23.882l5.888-1.63A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882c-2.023 0-3.9-.549-5.507-1.502l-.394-.234-4.083 1.133 1.152-3.981-.255-.408A9.84 9.84 0 012.118 12C2.118 6.533 6.533 2.118 12 2.118S21.882 6.533 21.882 12 17.467 21.882 12 21.882z"/></svg>
+</a>
+
+<script>
+  function openModal(id) {
+    document.getElementById(id).classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function closeOnOverlay(e, id) {
+    if (e.target === document.getElementById(id)) closeModal(id);
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.active').forEach(m => {
+        m.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    }
+  });
+  // Smooth scroll for anchor link
+  document.querySelector('a[href="#products"]').addEventListener('click', e => {
+    e.preventDefault();
+    document.getElementById('products').scrollIntoView({behavior:'smooth'});
+  });
+</script>
+</body>
+</html>
